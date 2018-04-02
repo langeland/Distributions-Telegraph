@@ -1,0 +1,12 @@
+##
+# Telegraph subroutes
+#
+
+-
+  name: 'Telegraph'
+  uriPattern: '<TelegraphSubroutes>'
+#  defaults:
+#    '@format': 'html'
+  subRoutes:
+    'TelegraphSubroutes':
+      package: 'Langeland.Telegraph'

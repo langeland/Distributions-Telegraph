@@ -1,0 +1,12 @@
+Neos:
+  Flow:
+    mvc:
+      routes:
+        'Neos.Flow':
+          position: 'end'
+
+
+    persistence:
+      backendOptions:
+      doctrine:
+        sqlLogger: 'Neos\Flow\Persistence\Doctrine\Logging\SqlLogger'

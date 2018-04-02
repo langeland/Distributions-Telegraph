@@ -1,0 +1,34 @@
+
+
+-
+  name: 'Telegraph checkStatus'
+  uriPattern: 'telegraph/{token}/checkStatus'
+  defaults:
+    '@package':    'Langeland.Telegraph'
+    '@controller': 'Telegraph'
+    '@action':     'checkStatus'
+
+-
+  name: 'Telegraph deliverTelegrams'
+  uriPattern: 'telegraph/{token}/deliver/{type}/{count}'
+  defaults:
+    '@package':    'Langeland.Telegraph'
+    '@controller': 'Telegraph'
+    '@action':     'deliverTelegrams'
+
+-
+  name: 'Telegraph listTelegrams'
+  uriPattern: 'telegraph/{token}/list(/{type}/{count})'
+  defaults:
+    '@package':    'Langeland.Telegraph'
+    '@controller': 'Telegraph'
+    '@action':     'listTelegrams'
+    'type':        ''
+    'count':       ''
+
+-
+  name: 'Telegraph Controller'
+  uriPattern: 'telegraph/{token}/{@action}'
+  defaults:
+    '@package':    'Langeland.Telegraph'
+    '@controller': 'Telegraph'

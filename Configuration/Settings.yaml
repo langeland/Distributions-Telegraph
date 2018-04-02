@@ -1,0 +1,13 @@
+
+Langeland:
+  Huginn:
+    Jira:
+      Api:
+        Authentication:
+          user: %env:HUGINN_JIRA_USER%
+          password: %env:HUGINN_JIRA_PASSWORD%
+
+    GitHub:
+      Api:
+        Authentication:
+          authToken: %env:HUGINN_GITHUB_TOKEN%
