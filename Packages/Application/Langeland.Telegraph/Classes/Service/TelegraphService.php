@@ -21,7 +21,8 @@ class TelegraphService
     {
 
         $telegraph = $token->getTelegraph();
-        $queuedTelegrams = $this->telegramRepository->findQueuedByTelegraph($telegraph);
+        $delayedTelegrams = $this->telegramRepository->findQueuedByTelegraph($telegraph, 'delayed');
+        $instantTelegrams = $this->telegramRepository->findQueuedByTelegraph($telegraph, 'instant');
 
         $response = [
             'instant' => [
@@ -37,47 +38,46 @@ class TelegraphService
             ]
         ];
 
-        if ($queuedTelegrams->count() > 0) {
+        if ($delayedTelegrams->count() > 0) {
+            $response['delayed']['status'] = 'pending';
+            $response['delayed']['count'] = $delayedTelegrams->count();
+        }
+
+        if ($instantTelegrams->count() > 0) {
             $response['instant']['status'] = 'pending';
-            $response['instant']['count'] = $queuedTelegrams->count();
+            $response['instant']['count'] = $instantTelegrams->count();
         }
 
         return $response;
     }
 
+
     /**
      * @param Token $token
-     * @param string $type
-     * @param int $count
-     * @return Telegram|null
+     * @param string|null $type
+     * @param int|null $count
+     * @param bool $shift
+     * @return array|null
      * @throws \Neos\Flow\Persistence\Exception\IllegalObjectTypeException
      */
-    public function shiftTelegramsByToken(Token $token, string $type = null, int $count = 1)
+    public function getTelegramsByToken(Token $token, string $type = null, ?int $count = 1, bool $shift = false)
     {
         $telegraph = $token->getTelegraph();
-        /** @var Telegram $telegram */
-        $telegram = $this->telegramRepository->findQueuedByTelegraph($telegraph, $type, $count);
 
-        if ($telegram === null) {
+        $telegrams = $this->telegramRepository->findQueuedByTelegraph($telegraph, $type, $count)->toArray();
+
+        if (count($telegrams) === 0) {
             return null;
         }
 
-        $telegram->setPrinted(new \DateTime());
-        $this->telegramRepository->update($telegram);
-        return $telegram;
-    }
-
-    public function getTelegramsByToken(Token $token, string $type = null, int $count = 1)
-    {
-        $telegraph = $token->getTelegraph();
-        /** @var Telegram $telegram */
-        $telegram = $this->telegramRepository->findQueuedByTelegraph($telegraph, $type, $count);
-
-        if ($telegram === null) {
-            return null;
+        if ($shift === true) {
+            foreach ($telegrams as $telegram) {
+                $telegram->setPrinted(new \DateTime());
+                $this->telegramRepository->update($telegram);
+            }
         }
 
-        return $telegram;
+        return $telegrams;
     }
 
 }
