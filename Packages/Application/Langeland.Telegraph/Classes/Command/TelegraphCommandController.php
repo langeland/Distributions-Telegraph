@@ -54,6 +54,17 @@ class TelegraphCommandController extends CommandController
     }
 
     /**
+     * List all telegraphs
+     */
+    public function listCommand()
+    {
+        $telegraphs = $this->telegraphRepository->findAll();
+        foreach ($telegraphs as $telegraph) {
+            \Neos\Flow\var_dump($telegraph);
+        }
+    }
+
+    /**
      * Generates a new token for the given telegraph
      * @param Telegraph $telegraph
      * @throws \Neos\Flow\Persistence\Exception\IllegalObjectTypeException
