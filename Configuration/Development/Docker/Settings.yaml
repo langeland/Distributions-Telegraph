@@ -4,6 +4,6 @@ Neos:
       backendOptions:
         host: 'mysql'
         driver: 'pdo_mysql'
-        dbname: %ENV_MYSQL_DATABASE%
-        user: %ENV_MYSQL_USER%
-        password: %ENV_MYSQL_PASSWORD%
+        dbname: %env:MYSQL_DATABASE%
+        user: %env:MYSQL_USER%
+        password: %env:MYSQL_PASSWORD%

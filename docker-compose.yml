@@ -35,15 +35,16 @@ services:
       - "traefik.backend=telegraph"
       - "traefik.frontend.rule=Host:telegraph.anne.flab.dk"
     ports:
-      - "80:80"
+      - "8009:80"
 
   php:
     image: danmarksradio/docker-twa-php-71:develop
     volumes_from:
       - application:rw
     environment:
-      XDEBUG_CONFIG: remote_host=172.17.0.1
-      PCO_ENV: dev
-      FLOW_CONTEXT: ${FLOW_CONTEXT}
+      FLOW_CONTEXT: "${FLOW_CONTEXT}"
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     labels:
       - "traefik.enable=false"
