@@ -1,0 +1,53 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Show telegram"{telegram.name}"</f:section>
+
+<f:section name="Content">
+    <table>
+        <tr>
+            <th>Identifier</th>
+            <td>{telegram.identifier}</td>
+        </tr>
+    
+        <tr>
+            <th>Telegraph</th>
+            <td>{telegram.telegraph}</td>
+        </tr>
+    
+        <tr>
+            <th>Created</th>
+            <td>{telegram.created -> f:format.date(format: 'Y-m-d H:i')}</td>
+        </tr>
+    
+        <tr>
+            <th>Printed</th>
+            <td>{telegram.printed -> f:format.date(format: 'Y-m-d H:i')}</td>
+        </tr>
+    
+        <tr>
+            <th>Channel</th>
+            <td>{telegram.channel}</td>
+        </tr>
+    
+        <tr>
+            <th>Instant</th>
+            <td>{telegram.instant}</td>
+        </tr>
+    
+        <tr>
+            <th>Tag</th>
+            <td>{telegram.tag}</td>
+        </tr>
+    
+        <tr>
+            <th>Message</th>
+            <td>{telegram.message}</td>
+        </tr>
+    
+        <tr>
+            <th>Message encoded</th>
+            <td>{telegram.messageEncoded}</td>
+        </tr>
+    </table>
+    <f:link.action action="index">Back</f:link.action>
+</f:section>

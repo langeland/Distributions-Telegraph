@@ -1,0 +1,58 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Edit telegram "{telegram.name}"</f:section>
+
+<f:section name="Content">
+    <f:form action="update" object="{telegram}" objectName="telegram">
+        <ol>
+            <li>
+                <label for="identifier">Identifier</label>
+                <f:form.textfield property="identifier" id="identifier" />
+            </li>
+        
+            <li>
+                <label for="telegraph">Telegraph</label>
+                <f:form.textfield property="telegraph" id="telegraph" />
+            </li>
+        
+            <li>
+                <label for="created">Created</label>
+                <f:form.textfield type="datetime" value="{telegram.created -> f:format.date(format: 'Y-m-d\TH:i:sP')}" property="created" id="created" />
+            </li>
+        
+            <li>
+                <label for="printed">Printed</label>
+                <f:form.textfield type="datetime" value="{telegram.printed -> f:format.date(format: 'Y-m-d\TH:i:sP')}" property="printed" id="printed" />
+            </li>
+        
+            <li>
+                <label for="channel">Channel</label>
+                <f:form.textfield property="channel" id="channel" />
+            </li>
+        
+            <li>
+                <label for="instant">Instant</label>
+                <f:form.textfield property="instant" id="instant" />
+            </li>
+        
+            <li>
+                <label for="tag">Tag</label>
+                <f:form.textfield property="tag" id="tag" />
+            </li>
+        
+            <li>
+                <label for="message">Message</label>
+                <f:form.textfield property="message" id="message" />
+            </li>
+        
+            <li>
+                <label for="messageEncoded">Message encoded</label>
+                <f:form.textfield property="messageEncoded" id="messageEncoded" />
+            </li>
+        
+            <li>
+                <f:form.submit value="Update" />
+            </li>
+        </ol>
+    </f:form>
+</f:section>
