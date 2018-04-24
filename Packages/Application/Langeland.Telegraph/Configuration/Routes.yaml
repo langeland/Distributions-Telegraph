@@ -15,3 +15,13 @@
     '@package':    'Langeland.Telegraph'
     '@controller': 'Telegraph'
     '@action':     'deliverTelegrams'
+
+-
+  name: 'Telegraph deliverTelegrams'
+  uriPattern: 'telegraph/{token}/listTelegrams(/{type})'
+  defaults:
+    '@package':    'Langeland.Telegraph'
+    '@controller': 'Telegraph'
+    '@action':     'listTelegrams'
+    'type': ''
+

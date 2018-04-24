@@ -78,6 +78,8 @@ class TelegraphCommandController extends CommandController
             ->setToken(\Neos\Flow\Utility\Algorithms::generateRandomToken(32));
 
         $this->tokenRepository->add($token);
+
+        $this->outputLine('Created new telegraph: ' . $telegraph->getIdentifier());
     }
 
 }
