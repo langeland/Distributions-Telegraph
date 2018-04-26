@@ -34,6 +34,11 @@ class TelegramService
 
         exec('/var/www/application/bin/phantomjs --disk-cache=false ' . implode(' ', $arguments));
 
+        $im = imagecreatefrompng(FLOW_PATH_TEMPORARY . '/telegram_' . $telegramTempIdentifier . '.png');
+        imagepng($im, FLOW_PATH_TEMPORARY . '/telegram_' . $telegramTempIdentifier . '.png');
+        imagedestroy($im);
+
+
         $data = file_get_contents(FLOW_PATH_TEMPORARY . '/telegram_' . $telegramTempIdentifier . '.png');
         $base64 = 'data:image/png;base64,' . base64_encode($data);
 
@@ -52,6 +57,36 @@ class TelegramService
 
         return $telegram;
 
+    }
+
+    function colorConvert($im)
+    {
+
+        $threshold = 127;
+
+        $img_x = imagesx($im);
+        $img_y = imagesy($im);
+        for ($x = 0; $x < $img_x; ++$x) {
+            for ($y = 0; $y < $img_y; ++$y) {
+
+                $index = imagecolorat($im, $x, $y);
+                $rgb = imagecolorsforindex($im, $index);
+
+                if ($index === 0xFFFFFF) {
+                    $color = 0xFFFFFF;
+                    continue;
+                } elseif ((($rgb['red'] + $rgb['green'] + $rgb['blue']) / 3) > $threshold) {
+                    $color = 0xFFFFFF;
+                } else {
+                    $color = 0x000000;
+                    continue;
+                }
+
+                imagesetpixel($im, $x, $y, $color);
+            }
+        }
+
+        return (true);
     }
 
 }

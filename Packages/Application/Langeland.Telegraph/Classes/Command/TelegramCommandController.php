@@ -49,15 +49,7 @@ class TelegramCommandController extends CommandController
      */
     public function createCommand(Telegraph $telegraph, string $message)
     {
-
-
         $telegram = $this->telegramService->create($telegraph, $message);
-
-
         $this->outputLine('Created telegram %s', [$telegram->getIdentifier()]);
-
-
-
-
     }
 }
