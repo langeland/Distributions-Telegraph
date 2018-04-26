@@ -35,6 +35,7 @@ class TelegramService
         exec('/var/www/application/bin/phantomjs --disk-cache=false ' . implode(' ', $arguments));
 
         $im = imagecreatefrompng(FLOW_PATH_TEMPORARY . '/telegram_' . $telegramTempIdentifier . '.png');
+        $this->colorConvert($im);
         imagepng($im, FLOW_PATH_TEMPORARY . '/telegram_' . $telegramTempIdentifier . '.png');
         imagedestroy($im);
 
