@@ -1,0 +1,30 @@
+<f:layout name="Default"/>
+
+<f:section name="Title">A list of telegraphs</f:section>
+
+<f:section name="Content">
+    <p>
+        <f:link.action action="new" class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Create a new telegraph</f:link.action>
+    </p>
+    <f:if condition="{telegraphs}">
+        <f:then>
+            <f:for each="{telegraphs}" as="telegraph">
+                <div class="card">
+                    <h5 class="card-header">{telegraph.name}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">{telegraph.identifier}</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <f:link.action action="show" arguments="{telegraph: telegraph}" class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Show</f:link.action>
+                            <f:link.action action="edit" arguments="{telegraph: telegraph}" class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Edit</f:link.action>
+                        </div>
+
+                    </div>
+                </div>
+            </f:for>
+        </f:then>
+        <f:else>
+            <p>No telegraphs created yet.</p>
+        </f:else>
+    </f:if>
+</f:section>
