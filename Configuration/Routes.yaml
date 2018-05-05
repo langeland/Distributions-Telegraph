@@ -3,10 +3,10 @@
 #
 
 -
-  name: 'Telegraph'
-  uriPattern: '<TelegraphSubroutes>'
+  name: 'Telegraph User Interface'
+  uriPattern: 'ui/<TelegraphUserInterfaceSubroutes>'
 #  defaults:
 #    '@format': 'html'
   subRoutes:
-    'TelegraphSubroutes':
-      package: 'Langeland.Telegraph'
+    'TelegraphUserInterfaceSubroutes':
+      package: 'Langeland.TelegraphUserInterface'

@@ -16,14 +16,12 @@
         "bin-dir": "bin"
     },
     "require": {
-        "neos/flow": "~4.3.0",
-        "neos/welcome": "~4.3.0",
-        "jonnyw/php-phantomjs": "^4.6"
+        "neos/flow": "~5.0.0",
+        "jakoch/phantomjs-installer": "2.1.1-p09"
     },
     "require-dev": {
-        "neos/kickstarter": "~4.3.0",
-        "neos/buildessentials": "~4.3.0",
-        "neos/behat": "dev-master",
+        "neos/kickstarter": "~5.0.0",
+        "neos/buildessentials": "~5.0.0",
         "phpunit/phpunit": "~6.0.0",
         "mikey179/vfsstream": "~1.6"
     },

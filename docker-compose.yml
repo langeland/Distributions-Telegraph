@@ -10,7 +10,9 @@ services:
       - "traefik.enable=false"
 
   mysql:
-    image: mysql:5.6
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
     environment:
@@ -35,7 +37,7 @@ services:
       - "traefik.backend=telegraph"
       - "traefik.frontend.rule=Host:telegraph.anne.flab.dk"
     ports:
-      - "8009:80"
+      - "80:80"
 
   php:
     image: danmarksradio/docker-twa-php-71:develop

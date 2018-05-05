@@ -4,9 +4,7 @@ Neos:
       routes:
         'Neos.Flow':
           position: 'end'
-
-
     persistence:
       backendOptions:
-      doctrine:
-        sqlLogger: 'Neos\Flow\Persistence\Doctrine\Logging\SqlLogger'
+        doctrine:
+          sqlLogger: 'Neos\Flow\Persistence\Doctrine\Logging\SqlLogger'
