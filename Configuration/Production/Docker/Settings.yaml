@@ -1,9 +1,0 @@
-Neos:
-  Flow:
-    persistence:
-      backendOptions:
-        host: 'mysql'
-        driver: 'pdo_mysql'
-        dbname: %env:MYSQL_DATABASE%
-        user: %env:MYSQL_USER%
-        password: %env:MYSQL_PASSWORD%
