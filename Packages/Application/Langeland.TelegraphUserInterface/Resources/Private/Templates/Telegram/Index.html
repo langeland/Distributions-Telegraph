@@ -1,0 +1,31 @@
+<f:layout name="Default"/>
+
+<f:section name="Title">A list of telegrams</f:section>
+
+<f:section name="Content">
+    <f:if condition="{telegrams}">
+        <f:then>
+            <f:for each="{telegrams}" as="telegram">
+                <h2><f:link.action action="show" arguments="{telegram: telegram}">{telegram.identifier}</f:link.action></h2>
+                <ul>
+                    <li>created:
+                        <f:format.date date="{telegram.created}" format="Y-m-d H:i:s"/>
+                    </li>
+                    <li>channel: {telegram.channel}</li>
+                    <li>instant: {telegram.instant}</li>
+                    <li>tag: {telegram.tag}</li>
+                </ul>
+                [
+                <f:link.action action="edit" arguments="{telegram: telegram}">Edit</f:link.action>
+                ]
+                <hr />
+            </f:for>
+        </f:then>
+        <f:else>
+            <p>No telegrams created yet.</p>
+        </f:else>
+    </f:if>
+    <p>
+        <f:link.action action="new">Create a new telegram</f:link.action>
+    </p>
+</f:section>

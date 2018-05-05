@@ -1,0 +1,67 @@
+<f:layout name="Default"/>
+
+<f:section name="Title">Show telegraph "{telegraph.name}"</f:section>
+
+<f:section name="TitleRight">
+    <f:link.action action="edit" arguments="{telegraph: telegraph}" class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Edit telegraph</f:link.action>
+</f:section>
+
+<f:section name="Content">
+    <div class="card mb-3">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">identifier</dt>
+                <dd class="col-sm-9">{telegraph.identifier}</dd>
+                <dt class="col-sm-3">online</dt>
+                <dd class="col-sm-9">{telegraph.online}</dd>
+            </dl>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <h2 class="display-4">Telegrams</h2>
+        </div>
+        <div class="col">
+            <f:link.action action="new" arguments="{telegraph: telegraph}" controller="Telegram"
+                           class="btn btn-outline-primary btn-lg mb-3 float-right" additionalAttributes="{'role': 'button'}">Create a new telegram
+            </f:link.action>
+        </div>
+    </div>
+
+
+    <f:for each="{telegrams}" as="telegram">
+
+        <div class="card mb-3">
+            <div class="card-header">
+                {telegram.identifier}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">created</dt>
+                    <dd class="col-sm-9"><f:format.date date="{telegram.created}" format="Y-m-d H:i:s"/></dd>
+                    <dt class="col-sm-3">printed</dt>
+                    <dd class="col-sm-9"><f:format.date date="{telegram.printed}" format="Y-m-d H:i:s"/></dd>
+                    <dt class="col-sm-3">channel</dt>
+                    <dd class="col-sm-9">{telegram.channel}</dd>
+                    <dt class="col-sm-3">instant</dt>
+                    <dd class="col-sm-9">{telegram.instant}</dd>
+                    <dt class="col-sm-3">tag</dt>
+                    <dd class="col-sm-9">{telegram.tag}</dd>
+                </dl>
+                <p class="card-text">
+                    <img style="border: #87cd3b 1px dashed; image-rendering: pixelated;" src="{telegram.messageEncoded}">
+                </p>
+
+                <f:form action="delete" controller="Telegram" arguments="{telegram: telegram}">
+                    <f:form.submit name="delete" value="Delete" class="btn btn-primary" />
+                </f:form>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </f:for>
+
+    <f:link.action action="index">Back</f:link.action>
+</f:section>

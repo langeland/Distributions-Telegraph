@@ -1,0 +1,21 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Show telegram "{telegram.identifier}"</f:section>
+
+<f:section name="Content">
+
+
+    <ul>
+        <li>identifier: {telegram.identifier}</li>
+        <li>created: <f:format.date date="{telegram.created}" format="Y-m-d H:i:s" /></li>
+        <li>channel: {telegram.channel}</li>
+
+        <li>instant: {telegram.instant}</li>
+        <li>tag: {telegram.tag}</li>
+    </ul>
+
+    <p>{telegram.message}</p>
+    <img style="border: #87cd3b 1px dashed; image-rendering: pixelated;" src="{telegram.messageEncoded}">
+    <br/>
+    <f:link.action action="index">Back</f:link.action>
+</f:section>
