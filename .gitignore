@@ -1,10 +1,15 @@
 /Build/
-/Configuration/
+/Configuration/*.example
+/Configuration/*/*.example
+/Configuration/README
 /Data/
-/Packages/
+/Packages/Framework
+/Packages/Libraries
 /Web/
 /bin/
 /Readme.rst
 /Upgrading.rst
 /flow
 /flow.bat
+/.env
+/docker/mysql/
