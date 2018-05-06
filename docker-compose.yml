@@ -31,6 +31,7 @@ services:
       NGINX_WEBROOT: "/var/www/application/Web"
       NGINX_PHP_HOST_AND_PORT: php:9000
       NGINX_SERVERNAME: application-dev
+      FLOW_CONTEXT: "${FLOW_CONTEXT}"
     volumes:
         - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     labels:

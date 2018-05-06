@@ -1,0 +1,11 @@
+Neos:
+  Flow:
+    persistence:
+      # For a reference of the possible options, take a look at
+      # https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
+      backendOptions:
+#        driver: 'pdo_mysql'
+        host: 'mysql'
+        dbname: '%env:MYSQL_DATABASE%'       # adjust to your database name
+        user: '%env:MYSQL_USER%'             # adjust to your database user
+        password: '%env:MYSQL_PASSWORD%'         # adjust to your database password
