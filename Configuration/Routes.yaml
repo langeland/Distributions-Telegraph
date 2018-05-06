@@ -10,3 +10,12 @@
   subRoutes:
     'TelegraphUserInterfaceSubroutes':
       package: 'Langeland.TelegraphUserInterface'
+
+-
+  name: 'Telegraph Api'
+  uriPattern: 'api/<TelegraphApiSubroutes>'
+  defaults:
+    '@format': 'html'
+  subRoutes:
+    'TelegraphApiSubroutes':
+      package: 'Langeland.TelegraphApi'
