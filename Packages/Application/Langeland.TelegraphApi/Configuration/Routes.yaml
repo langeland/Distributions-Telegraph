@@ -1,0 +1,30 @@
+
+-
+  name: 'Langeland.TelegraphApi - Check status'
+  uriPattern: 'telegraph/{telegraph}/checkstatus'
+  defaults:
+    '@package':    'Langeland.TelegraphApi'
+    '@controller': 'telegraph'
+    '@action':     'checkStatus'
+    '@format':     'json'
+
+-
+  name: 'Langeland.TelegraphApi - Deliver telegrams'
+  uriPattern: 'telegraph/{telegraph}/deliver/{type}'
+  defaults:
+    '@package':    'Langeland.TelegraphApi'
+    '@controller': 'Telegraph'
+    '@action':     'deliverTelegrams'
+    '@format':     'json'
+
+-
+  name: 'Langeland.TelegraphApi - List telegrams'
+  uriPattern: 'telegraph/{telegraph}/telegrams(/{type})'
+  defaults:
+    '@package':    'Langeland.TelegraphApi'
+    '@controller': 'Telegraph'
+    '@action':     'listTelegrams'
+    '@format':     'json'
+    'type': ''
+
+
