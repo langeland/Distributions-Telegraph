@@ -10,9 +10,9 @@ services:
       - "traefik.enable=false"
 
   mysql:
-    image: mysql:5.7
+    image: mysql:5.7.22
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
     environment:
@@ -24,7 +24,7 @@ services:
       - "traefik.enable=false"
 
   nginx:
-    image: nginx:1.13
+    image: nginx:1.13.12
     volumes_from:
       - application:rw
     environment:
