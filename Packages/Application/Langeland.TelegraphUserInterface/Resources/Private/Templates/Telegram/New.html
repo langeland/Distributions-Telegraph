@@ -58,6 +58,22 @@
             <f:form.textarea property="message" id="message" class="form-control" rows="3"/>
         </div>
 
+
+        <f:if condition="{telegraph}">
+            <f:then>
+                <f:link.action action="show" arguments="{telegraph: telegraph}" controller="telegraph"
+                               class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Back to telegraph
+                </f:link.action>
+            </f:then>
+            <f:else>
+
+            </f:else>
+        </f:if>
+
+
+
+
+
         <f:form.submit class="btn btn-outline-primary" value="Create"/>
     </f:form>
 </f:section>

@@ -7,13 +7,14 @@
     '@controller': 'telegraph'
     '@action':     'checkStatus'
     '@format':     'json'
+    'telegraph': ''
 
 -
   name: 'Langeland.TelegraphApi - Deliver telegrams'
   uriPattern: 'telegraph/{telegraph}/deliver/{type}'
   defaults:
     '@package':    'Langeland.TelegraphApi'
-    '@controller': 'Telegraph'
+    '@controller': 'telegraph'
     '@action':     'deliverTelegrams'
     '@format':     'json'
 
@@ -22,7 +23,7 @@
   uriPattern: 'telegraph/{telegraph}/telegrams(/{type})'
   defaults:
     '@package':    'Langeland.TelegraphApi'
-    '@controller': 'Telegraph'
+    '@controller': 'telegraph'
     '@action':     'listTelegrams'
     '@format':     'json'
     'type': ''
