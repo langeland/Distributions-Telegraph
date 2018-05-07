@@ -70,8 +70,10 @@ class TelegraphController extends ActionController
     public function createAction(Telegraph $newTelegraph)
     {
         $this->telegraphRepository->add($newTelegraph);
-        $this->addFlashMessage('Created a new telegraph.');
-        $this->redirect('index');
+        $this->addFlashMessage('Created a new telegraph. ' . $newTelegraph->getIdentifier());
+        $this->redirect('show', null, null, ['telegraph' => $newTelegraph]);
+
+//        return 'ok: ' . $newTelegraph->getIdentifier();
     }
 
     /**

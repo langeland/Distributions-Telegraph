@@ -71,7 +71,7 @@ class TelegramController extends ActionController
         $newTelegram->setMessageEncoded($this->telegraphService->convert($newTelegram->getMessage()));
         $this->telegramRepository->add($newTelegram);
 
-        $this->addFlashMessage('Created a new telegram.');
+        $this->addFlashMessage('Created a new telegram. ' . $newTelegram->getIdentifier());
 //        $this->redirect('show', 'telegraph', null, ['telegraph' => $newTelegram->getTelegraph()]);
         $this->redirect('new', 'telegram', null, ['telegraph' => $newTelegram->getTelegraph()]);
     }

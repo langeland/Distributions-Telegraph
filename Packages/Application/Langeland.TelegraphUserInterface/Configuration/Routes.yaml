@@ -1,31 +1,42 @@
 
 -
-  name: 'Langeland.TelegraphUserInterface - Telegraph'
-  uriPattern: 'telegraph/{@action}(/{telegraph})'
+  name: 'Default'
+  uriPattern: 'telegraph/{@action}'
   defaults:
-    '@package':    'Langeland.TelegraphUserInterface'
-    '@controller': 'Telegraph'
+    '@controller': 'telegraph'
     '@action':     'index'
-    'telegraph':   ''
 
 -
-  name: 'Langeland.TelegraphUserInterface - Telegram new'
-  uriPattern: 'telegram/new(/{telegraph})'
+  name: 'Default'
+  uriPattern: 'telegraph/{@action}/{telegraph}'
   defaults:
-    '@package':    'Langeland.TelegraphUserInterface'
-    '@controller': 'telegram'
-    '@action':     'new'
-    'telegraph':   ''
+    '@controller': 'telegraph'
+
+
+
 
 -
-  name: 'Langeland.TelegraphUserInterface - Telegram'
-  uriPattern: 'telegram/{@action}(/{telegram})'
+  name: 'Default'
+  uriPattern: 'telegram/{@action}'
   defaults:
-    '@package':    'Langeland.TelegraphUserInterface'
     '@controller': 'telegram'
-    '@action':     'index'
-    'telegram':   ''
 
+
+-
+  name: 'Default'
+  uriPattern: 'telegram/{@action}/{telegraph}'
+  defaults:
+    '@controller': 'telegram'
+    'telegraph': ''
+
+
+
+-
+  name: 'Default'
+  uriPattern: 'telegram/{@action}/{telegram}'
+  defaults:
+    '@controller': 'telegram'
+    'telegram': ''
 
 
 
