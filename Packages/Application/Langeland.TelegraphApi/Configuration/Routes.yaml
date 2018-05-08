@@ -28,4 +28,14 @@
     '@format':     'json'
     'type': ''
 
+-
+  name: 'Push'
+  uriPattern: 'telegraph/{telegraph}/push'
+  defaults:
+    '@package':    'Langeland.TelegraphApi'
+    '@controller': 'telegraph'
+    '@action':     'push'
+    '@format':     'json'
+    'type': ''
+
 
