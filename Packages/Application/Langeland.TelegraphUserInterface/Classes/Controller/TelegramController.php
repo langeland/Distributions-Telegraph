@@ -29,7 +29,7 @@ class TelegramController extends ActionController
      * @Flow\Inject
      * @var \Langeland\TelegraphCore\Service\TelegramService
      */
-    protected $telegraphService;
+    protected $telegramService;
 
     /**
      * @return void
@@ -68,7 +68,7 @@ class TelegramController extends ActionController
      */
     public function createAction(Telegram $newTelegram)
     {
-        $newTelegram->setMessageEncoded($this->telegraphService->convert($newTelegram->getMessage()));
+        $newTelegram->setMessageEncoded($this->telegramService->convert($newTelegram->getMessage()));
         $this->telegramRepository->add($newTelegram);
 
         $this->addFlashMessage('Created a new telegram. ' . $newTelegram->getIdentifier());
@@ -110,4 +110,15 @@ class TelegramController extends ActionController
         $this->addFlashMessage('Deleted a telegram.');
         $this->redirect('index');
     }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function testAction(string $message = '')
+    {
+        $this->view->assign('message', $message);
+        $this->view->assign('messageEncoded', $this->telegramService->convert($message));
+    }
+
 }

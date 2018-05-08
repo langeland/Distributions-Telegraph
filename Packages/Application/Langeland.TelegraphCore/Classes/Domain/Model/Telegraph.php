@@ -6,6 +6,8 @@ namespace Langeland\TelegraphCore\Domain\Model;
  * This file is part of the Langeland.TelegraphCore package.
  */
 
+use Langeland\TelegraphCore\Service\TelegramService;
+use Langeland\TelegraphCore\Service\TelegraphService;
 use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,6 +16,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Telegraph
 {
+
+    /**
+     * @var TelegraphService
+     * @Flow\Inject
+     */
+    protected $telegraphService;
 
     /**
      * @var string
@@ -33,11 +41,6 @@ class Telegraph
      * @var bool
      */
     protected $online = false;
-
-    public function __construct()
-    {
-        $this->tokens = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * @return string
@@ -91,6 +94,16 @@ class Telegraph
     {
         $this->online = $online;
         return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->telegraphService->getStatusByTelegraph($this);
+    }
+
+    public function getQueuedTelegrams()
+    {
+
     }
 
 }
