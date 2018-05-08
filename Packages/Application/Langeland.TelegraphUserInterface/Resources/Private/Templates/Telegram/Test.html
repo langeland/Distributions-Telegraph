@@ -1,0 +1,33 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Test telegram</f:section>
+
+<f:section name="Content">
+    <p>Just fill out the following form to create a new telegram:</p>
+    <f:form action="test">
+
+
+        <div class="form-group">
+            <label for="message">Message</label>
+            <f:form.textarea name="message" id="message" class="form-control" rows="3" value="{message}"/>
+        </div>
+
+        <f:form.submit class="btn btn-outline-primary" value="Preview"/>
+    </f:form>
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+
+            <p class="card-text">
+                <img class="img-fluid border border-info" style="image-rendering: pixelated;" src="{messageEncoded}">
+            </p>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</f:section>
