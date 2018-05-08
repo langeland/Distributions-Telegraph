@@ -6,6 +6,7 @@ namespace Langeland\TelegraphApi\Controller;
  * This file is part of the Langeland.TelegraphApi package.
  */
 
+use Langeland\TelegraphCore\Service\TelegramService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Langeland\TelegraphCore\Domain\Model\Telegraph;
@@ -32,6 +33,12 @@ class TelegraphController extends ActionController
      * @var \Langeland\TelegraphCore\Service\TelegraphService
      */
     protected $telegraphService;
+
+    /**
+     * @Flow\Inject
+     * @var TelegramService
+     */
+    protected $telegramService;
 
     /**
      * @param Telegraph $telegraph
@@ -66,4 +73,19 @@ class TelegraphController extends ActionController
         $telegrams = $this->telegraphService->getTelegramsByTelegraph($telegraph, $type, null, false);
         $this->view->assign('value', $telegrams);
     }
+
+    /**
+     * @param Telegraph $telegraph
+     * @return void
+     * @throws \Neos\Flow\Http\Exception
+     */
+    public function pushAction(Telegraph $telegraph)
+    {
+        $message = $this->request->getHttpRequest()->getContent();
+        $this->telegramService->create($telegraph, $message);
+        $this->response->setStatus(204);
+    }
+
+
+
 }
