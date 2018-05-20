@@ -51,3 +51,9 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     labels:
       - "traefik.enable=false"
+
+  redis:
+    image: redis:3.2.11
+    labels:
+      - "traefik.enable=false"
+

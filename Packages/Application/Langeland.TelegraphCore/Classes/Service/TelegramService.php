@@ -108,12 +108,10 @@ class TelegramService
 
                 if ($index === 0xFFFFFF) {
                     $color = 0xFFFFFF;
-                    continue;
                 } elseif ((($rgb['red'] + $rgb['green'] + $rgb['blue']) / 3) > $threshold) {
                     $color = 0xFFFFFF;
                 } else {
                     $color = 0x000000;
-                    continue;
                 }
 
                 imagesetpixel($im, $x, $y, $color);
