@@ -6,8 +6,8 @@ namespace Langeland\TelegraphCore\Domain\Model;
  * This file is part of the Langeland.TelegraphCore package.
  */
 
-use Langeland\TelegraphCore\Service\TelegramService;
 use Langeland\TelegraphCore\Service\TelegraphService;
+use Neos\Cache\Frontend\VariableFrontend;
 use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -83,7 +83,7 @@ class Telegraph
      */
     public function isOnline(): bool
     {
-        return $this->online;
+        return true;
     }
 
     /**
@@ -96,14 +96,42 @@ class Telegraph
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getStatus()
     {
         return $this->telegraphService->getStatusByTelegraph($this);
     }
 
-    public function getQueuedTelegrams()
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastSeen()
     {
+        return $this->telegraphService->getLastSeen($this);
+    }
 
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastSeenState()
+    {
+        if($this->telegraphService->getLastSeen($this) === null){
+            return -1;
+        }
+
+        $diff = time() - $this->telegraphService->getLastSeen($this)->format('U');
+
+        if($diff > 600) {
+            return 0;
+        } elseif ($diff > 60) {
+            return 1;
+        } else {
+            return 2;
+        }
+
+        return $this->telegraphService->getLastSeen($this);
     }
 
 }

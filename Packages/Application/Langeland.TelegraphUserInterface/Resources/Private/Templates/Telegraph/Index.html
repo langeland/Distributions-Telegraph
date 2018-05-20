@@ -4,13 +4,15 @@
 
 <f:section name="Content">
     <p>
+    <div class="btn-group" role="group" aria-label="Basic example">
         <f:link.action action="new" class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Create a new telegraph</f:link.action>
         <f:link.action action="new" class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Test message format</f:link.action>
+    </div>
     </p>
     <f:if condition="{telegraphs}">
         <f:then>
             <f:for each="{telegraphs}" as="telegraph">
-                <div class="card">
+                <div class="card mb-3">
                     <h5 class="card-header">{telegraph.name}</h5>
                     <div class="card-body">
                         <h5 class="card-title">{telegraph.identifier}</h5>
@@ -20,14 +22,13 @@
                             <dd class="col-sm-10">{telegraph.identifier}</dd>
                             <dt class="col-sm-2">online</dt>
                             <dd class="col-sm-10">
-                                <f:if condition="{telegraph.online}">
-                                    <f:then>
-                                        <span class="badge badge-success">Online</span>
-                                    </f:then>
-                                    <f:else>
-                                        <span class="badge badge-danger">Offline</span>
-                                    </f:else>
-                                </f:if>
+                                <f:switch expression="{telegraph.lastSeenState}">
+                                    <f:case value="-1"><span class="badge badge-info">Unknown</span></f:case>
+                                    <f:case value="0"><span class="badge badge-danger">Offline</span></f:case>
+                                    <f:case value="1"><span class="badge badge-warning">Delayed</span></f:case>
+                                    <f:case value="2"><span class="badge badge-success">Online</span></f:case>
+                                   <f:defaultCase>???????????</f:defaultCase>
+                                </f:switch>
                             </dd>
                             <dt class="col-sm-2">instant</dt>
                             <dd class="col-sm-10">{telegraph.status.instant.count}</dd>

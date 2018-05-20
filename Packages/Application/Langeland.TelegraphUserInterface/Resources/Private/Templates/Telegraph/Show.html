@@ -3,31 +3,32 @@
 <f:section name="Title">Show telegraph "{telegraph.name}"</f:section>
 
 <f:section name="TitleRight">
-    <f:link.action action="edit" arguments="{telegraph: telegraph}" class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Edit telegraph</f:link.action>
+
 </f:section>
 
 <f:section name="Content">
     <div class="card mb-3">
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-2">identifier</dt>
+                <dt class="col-sm-2">Identifier</dt>
                 <dd class="col-sm-10">{telegraph.identifier}</dd>
-                <dt class="col-sm-2">online</dt>
+                <dt class="col-sm-2">Online</dt>
                 <dd class="col-sm-10">
-                    <f:if condition="{telegraph.online}">
-                        <f:then>
-                            <span class="badge badge-success">Online</span>
-                        </f:then>
-                        <f:else>
-                            <span class="badge badge-danger">Offline</span>
-                        </f:else>
-                    </f:if>
+                    <f:switch expression="{telegraph.lastSeenState}">
+                        <f:case value="-1"><span class="badge badge-info">Unknown</span></f:case>
+                        <f:case value="0"><span class="badge badge-danger">Offline</span></f:case>
+                        <f:case value="1"><span class="badge badge-warning">Delayed</span></f:case>
+                        <f:case value="2"><span class="badge badge-success">Online</span></f:case>
+                        <f:defaultCase>???????????</f:defaultCase>
+                    </f:switch>
                 </dd>
-                <dt class="col-sm-2">instant</dt>
+
+                <dt class="col-sm-2">Instant</dt>
                 <dd class="col-sm-10">{telegraph.status.instant.count}</dd>
-                <dt class="col-sm-2">delayed</dt>
+                <dt class="col-sm-2">Delayed</dt>
                 <dd class="col-sm-10">{telegraph.status.delayed.count}</dd>
             </dl>
+            <f:link.action action="edit" arguments="{telegraph: telegraph}" class="btn btn-outline-primary float-right" additionalAttributes="{'role': 'button'}">Edit telegraph</f:link.action>
         </div>
     </div>
 

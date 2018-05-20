@@ -1,0 +1,11 @@
+Langeland\TelegraphCore\Service\TelegraphService:
+  properties:
+    onlineCache:
+      object:
+        factoryObjectName: Neos\Flow\Cache\CacheManager
+        factoryMethodName: getCache
+        arguments:
+          1:
+            value: TelegraphCore_OnlineCache
+
+

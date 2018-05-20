@@ -3,14 +3,14 @@
   name: 'Default'
   uriPattern: 'telegraph/{@action}'
   defaults:
-    '@controller': 'telegraph'
-    '@action':     'index'
+    '@controller': 'Telegraph'
+#    '@action':     'index'
 
 -
   name: 'Default'
   uriPattern: 'telegraph/{@action}/{telegraph}'
   defaults:
-    '@controller': 'telegraph'
+    '@controller': 'Telegraph'
 
 
 
@@ -19,26 +19,33 @@
   name: 'Default'
   uriPattern: 'telegram/{@action}'
   defaults:
-    '@controller': 'telegram'
-
+    '@controller': 'Telegram'
 
 -
   name: 'Default'
-  uriPattern: 'telegram/{@action}/{telegraph}'
+  uriPattern: 'telegram/new/{telegraph}'
   defaults:
-    '@controller': 'telegram'
-    'telegraph': ''
-
-
+    '@controller': 'Telegram'
+    '@action':  'new'
 
 -
   name: 'Default'
   uriPattern: 'telegram/{@action}/{telegram}'
   defaults:
-    '@controller': 'telegram'
-    'telegram': ''
+    '@controller': 'Telegram'
 
 
+
+
+#
+#-
+#  name: 'Default'
+#  uriPattern: 'telegram/{@action}/{telegram}'
+#  defaults:
+#    '@controller': 'telegram'
+#    'telegram': ''
+#
+#
 
 
 

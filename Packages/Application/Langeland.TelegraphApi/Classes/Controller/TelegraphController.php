@@ -46,6 +46,7 @@ class TelegraphController extends ActionController
      */
     public function checkStatusAction(Telegraph $telegraph)
     {
+        $this->telegraphService->setLastSeen($telegraph);
         $status = $this->telegraphService->getStatusByTelegraph($telegraph);
         $this->view->assign('value', $status);
     }
@@ -58,6 +59,7 @@ class TelegraphController extends ActionController
      */
     public function deliverTelegramsAction(Telegraph $telegraph, string $type)
     {
+        $this->telegraphService->setLastSeen($telegraph);
         $telegrams = $this->telegraphService->getTelegramsByTelegraph($telegraph, $type, null, true);
         $this->view->assign('value', $telegrams);
     }

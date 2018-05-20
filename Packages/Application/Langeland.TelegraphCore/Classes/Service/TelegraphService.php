@@ -7,6 +7,7 @@ namespace Langeland\TelegraphCore\Service;
 use Langeland\TelegraphCore\Domain\Model\Telegram;
 use Langeland\TelegraphCore\Domain\Model\Telegraph;
 use Langeland\TelegraphCore\Domain\Repository\TelegramRepository;
+use Neos\Cache\Frontend\VariableFrontend;
 use Neos\Flow\Annotations as Flow;
 
 class TelegraphService
@@ -16,6 +17,12 @@ class TelegraphService
      * @Flow\Inject
      */
     protected $telegramRepository;
+
+    /**
+     * @var VariableFrontend
+     * @Flow\Inject
+     */
+    protected $onlineCache;
 
     public function getStatusByTelegraph(Telegraph $telegraph)
     {
@@ -93,7 +100,6 @@ class TelegraphService
     {
 
         $telegrams = $this->telegramRepository->findQueuedByTelegraph($telegraph, $type, $count)->toArray();
-
         if (count($telegrams) === 0) {
             return null;
         }
@@ -106,6 +112,27 @@ class TelegraphService
         }
 
         return $telegrams;
+    }
+
+    public function getLastSeen(Telegraph $telegraph): ?\DateTime
+    {
+        $cacheIdentifier = sha1('lastSeen:' . (string)$telegraph->getIdentifier());
+        if ($this->onlineCache->has($cacheIdentifier)) {
+            return $this->onlineCache->get($cacheIdentifier);
+        }
+        return null;
+    }
+
+    public function setLastSeen(Telegraph $telegraph, \DateTime $dateTime = null)
+    {
+        if ($dateTime === null) {
+            $dateTime = new \DateTime();
+        }
+
+        $cacheIdentifier = sha1('lastSeen:' . (string)$telegraph->getIdentifier());
+        $this->onlineCache->set($cacheIdentifier, $dateTime, [], 0);
+
+        return;
     }
 
 }

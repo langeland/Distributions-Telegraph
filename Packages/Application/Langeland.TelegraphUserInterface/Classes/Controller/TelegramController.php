@@ -106,9 +106,11 @@ class TelegramController extends ActionController
      */
     public function deleteAction(Telegram $telegram)
     {
+
+        $telegraph = $telegram->getTelegraph();
         $this->telegramRepository->remove($telegram);
         $this->addFlashMessage('Deleted a telegram.');
-        $this->redirect('index');
+        $this->redirect('show', 'Telegraph', null, ['telegraph' => $telegraph]);
     }
 
     /**
