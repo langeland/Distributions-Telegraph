@@ -1,10 +1,12 @@
 /Build/
 /Configuration/*.example
 /Configuration/*/*.example
+/Configuration/**/*.example
 /Configuration/README
 /Data/
-/Packages/Framework
-/Packages/Libraries
+/DistributionPackages/Framework
+/DistributionPackages/Libraries
+/Packages/
 /Web/
 /bin/
 /Readme.rst
@@ -12,4 +14,8 @@
 /flow
 /flow.bat
 /.env
-/docker/mysql/
+
+/.docker_volumes/
+/.idea/
+/.DS_Store
+/docker-compose.yaml

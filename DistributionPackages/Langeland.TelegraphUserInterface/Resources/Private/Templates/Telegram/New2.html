@@ -1,0 +1,38 @@
+<f:layout name="Default"/>
+
+<f:section name="Title">New telegram</f:section>
+
+<f:section name="Content">
+    <p>Just fill out the following form to create a new telegram:</p>
+    <f:form action="create" objectName="newTelegram">
+
+
+        <f:form.hidden property="telegraph" value="{telegraph}"/>
+        <div class="form-group">
+            <label for="disabledTelegraph">Telegraph</label>
+            <input id="disabledTelegraph" class="form-control" type="text" placeholder="{telegraph.name}"
+                   readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message</label>
+            <f:form.textarea property="message" id="message" class="form-control editor" rows="3"/>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="main-container">
+                <div class="editor-container editor-container_classic-editor" id="editor-container">
+                    <div class="editor-container__editor"><div id="editor"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <f:link.action action="show" arguments="{telegraph: telegraph}" controller="telegraph"
+                       class="btn btn-outline-primary" additionalAttributes="{'role': 'button'}">Back to telegraph
+        </f:link.action>
+        <f:form.submit class="btn btn-outline-primary" value="Create"/>
+    </f:form>
+</f:section>

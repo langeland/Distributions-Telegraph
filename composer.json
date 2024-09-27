@@ -1,6 +1,6 @@
 {
-    "name": "neos/flow-base-distribution",
-    "description": "Flow Base Distribution",
+    "name": "langeland/distribution-telefraph",
+    "description": "Platform for building and managing digital telegrams",
     "license": "MIT",
     "support": {
         "email": "hello@neos.io",
@@ -13,23 +13,41 @@
     },
     "config": {
         "vendor-dir": "Packages/Libraries",
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "allow-plugins": {
+            "neos/composer-plugin": true,
+            "php-http/discovery": true
+        }
     },
     "require": {
-        "neos/flow": "~5.0.0",
-        "jakoch/phantomjs-installer": "2.1.1-p09"
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-gd": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-tokenizer": "*",
+        "neos/flow": "~8.3.0",
+        "jakoch/phantomjs-installer": "^3.0.0",
+        "langeland/telegraphcore": "@dev",
+        "langeland/telegraphuserinterface": "@dev",
+        "langeland/telegraphapi": "@dev"
     },
     "require-dev": {
-        "neos/kickstarter": "~5.0.0",
-        "neos/buildessentials": "~5.0.0",
-        "phpunit/phpunit": "~6.0.0",
-        "mikey179/vfsstream": "~1.6"
+        "neos/kickstarter": "~8.3.0"
     },
     "replace": {
         "typo3/flow-base-distribution": "self.version"
     },
+    "repositories": {
+        "distributionPackages": {
+            "type": "path",
+            "url": "./DistributionPackages/*"
+        }
+    },
     "suggest": {
-        "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
+        "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required",
+        "neos/fluid-adaptor": "For rendering templates with TYPO3.Fluid"
     },
     "scripts": {
         "post-install-cmd": [

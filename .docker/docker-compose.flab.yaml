@@ -1,0 +1,42 @@
+###############################################################
+## Docker Compose for Balin
+###############################################################
+services:
+  application:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8017:80
+    environment:
+      FLOW_CONTEXT: ${APPLICATION_CONTEXT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_DATABASE: ${DATABASE_DATABASE}
+      WEB_DOCUMENT_ROOT: /app/Web
+      PHP_DEBUGGER: none
+      VIRK_CLIENT_USERNAME: ${VIRK_CLIENT_USERNAME}
+      VIRK_CLIENT_PASSWORD: ${VIRK_CLIENT_PASSWORD}
+    volumes:
+      - .:/app
+      - .docker/static-data/nginx/default.conf:/etc/nginx/sites-enabled/default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cvrlookup.entrypoints=websecure"
+      - "traefik.http.routers.cvrlookup.rule=Host(`cvrlookup.balin.vmas.dev`)"
+      - "traefik.http.routers.cvrlookup.tls.certresolver=commonResolver"
+      - "traefik.http.routers.cvrlookup.middlewares=vmas_ipwhitelist@file"
+
+  database:
+    image: mariadb
+    restart: unless-stopped
+    volumes:
+      - .docker_volumes/database:/var/lib/mysql
+    environment:
+      MARIADB_USER: ${DATABASE_USER}
+      MARIADB_PASSWORD: ${DATABASE_PASSWORD}
+      MARIADB_DATABASE: ${DATABASE_DATABASE}
+      MARIADB_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+
